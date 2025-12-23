@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programas Académicos - CUC</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- ESTILOS GENERALES --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; }
+        body { background-color: #f4f4f4; color: #333; display: flex; flex-direction: column; min-height: 100vh; }
+
+        /* --- HEADER --- */
+        header { background-color: #9e0b1c; width: 100%; padding: 1.5rem 0; box-shadow: 0 4px 15px rgba(0,0,0,0.3); margin-bottom: 2rem; border-bottom: 4px solid #7a0816; display: flex; justify-content: center; align-items: center; z-index: 10; cursor: pointer; }
+        .logo-container { display: flex; align-items: center; gap: 12px; color: white; padding: 0 20px; }
+        .cuc-siglas { font-weight: 900; font-size: 3.5rem; line-height: 1; letter-spacing: -2px; }
+        .cuc-texto { display: flex; flex-direction: column; border-left: 1px solid rgba(255,255,255,0.3); padding-left: 12px; }
+        .cuc-texto span { font-weight: 300; font-size: 1.2rem; line-height: 1; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- CONTENEDOR PRINCIPAL --- */
+        #main-container { width: 90%; max-width: 1200px; margin: 0 auto; position: relative; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
+        .grid-menu { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; padding-bottom: 2rem; justify-content: center; animation: fadeIn 0.5s ease-in-out; }
+        .card { background: white; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); border: 1px solid #e1e1e1; cursor: pointer; padding: 3rem 1.5rem; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 300px; }
+        .card:hover { transform: translateY(-8px); box-shadow: 0 20px 30px rgba(158, 11, 28, 0.15); border-color: #9e0b1c; }
+        .card h2 { font-size: 1.6rem; font-weight: 700; margin-top: 20px; text-transform: uppercase; color: #333; }
+        .icon-main { font-size: 5rem; color: #9e0b1c; }
+
+        /* --- VISTA DETALLE --- */
+        .program-details { display: none; flex-direction: column; align-items: center; animation: fadeIn 0.5s ease-in-out; text-align: center; width: 100%; }
+        .program-header { margin-bottom: 3rem; }
+        .program-header h2 { font-size: 2.5rem; color: #9e0b1c; text-transform: uppercase; font-weight: 700; margin-bottom: 1rem; }
+        .options-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; width: 100%; max-width: 800px; }
+        .option-card { background: white; border-radius: 15px; padding: 3rem 2rem; text-decoration: none; color: #333; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: 2px solid transparent; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; }
+        .option-i { border-color: #ccc; }
+        .option-i:hover { background-color: #f0f0f0; transform: scale(1.03); border-color: #999; }
+        .option-i .opt-icon { color: #666; }
+        .option-h { border-color: #ffcccc; }
+        .option-h:hover { background-color: #9e0b1c; color: white; transform: scale(1.03); border-color: #9e0b1c; }
+        .option-h:hover .opt-icon { color: white; }
+        .option-h .opt-icon { color: #9e0b1c; }
+        .opt-icon { font-size: 3rem; margin-bottom: 1rem; transition: color 0.3s; }
+        .opt-title { font-size: 1.5rem; font-weight: 700; text-transform: uppercase; }
+        .btn-back-container { margin-top: 4rem; width: 100%; text-align: center; }
+        .btn-back { background-color: transparent; border: 2px solid #9e0b1c; color: #9e0b1c; padding: 10px 35px; font-size: 1rem; border-radius: 50px; cursor: pointer; transition: all 0.3s ease; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+        .btn-back:hover { background-color: #9e0b1c; color: white; }
+
+        /* --- FOOTER COMPACTO --- */
+        footer { 
+            background-color: #000000; 
+            width: 100%; 
+            padding: 0.8rem 0; /* Padding reducido (antes era 1.5rem) */
+            margin-top: 3rem; 
+            color: white; 
+            border-top: 2px solid #333; 
+        }
+        
+        .footer-content { 
+            width: 90%; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            display: flex; 
+            align-items: center; 
+            justify-content: flex-start; 
+            gap: 10px; /* Separación reducida */
+        }
+
+        /* --- SELLO "C" PEQUEÑO --- */
+        .cuc-seal {
+            width: 34px;  /* Reducido de 45px */
+            height: 34px; /* Reducido de 45px */
+            background-color: #9e0b1c; 
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem; /* Fuente más pequeña */
+            font-weight: 900; 
+            color: white; 
+            border: 2px solid #ffffff; /* Borde un poco más fino */
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+            font-family: 'Montserrat', sans-serif;
+            flex-shrink: 0; /* Evita que se deforme si la pantalla es muy pequeña */
+        }
+
+        .dev-info { display: flex; flex-direction: column; line-height: 1.2; }
+        
+        /* Texto reducido */
+        .dev-title { 
+            font-size: 0.75rem; /* Antes 0.9rem */
+            font-weight: 700; 
+            letter-spacing: 0.5px; 
+            color: #fff; 
+        }
+        
+        .dev-name { 
+            font-size: 0.7rem; /* Antes 0.85rem */
+            font-weight: 300; 
+            color: #ccc; 
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @media (max-width: 600px) { .cuc-siglas { font-size: 2.5rem; } .cuc-texto span { font-size: 1rem; } .card { height: 200px; } .footer-content { justify-content: center; text-align: left; } }
+    </style>
+</head>
+<body>
+    <header onclick="showHome()">
+        <div class="logo-container">
+            <div class="cuc-siglas">CUC</div>
+            <div class="cuc-texto"><span class="linea-1">Universidad</span><span>de la Costa</span></div>
+        </div>
+    </header>
+
+    <div id="main-container">
+        <div id="menu-view" class="grid-menu">
+            <article class="card" onclick="openProgram('Psicología', '🧠', 'https://fchys.github.io/PSICOLOGIA-PENSUM-I/', 'https://fchys.github.io/PSICOLOGIA-PENSUM-H/')"><span class="icon-main">🧠</span><h2>Psicología</h2></article>
+            <article class="card" onclick="openProgram('Comunicación', '📢', '#', '#')"><span class="icon-main">📢</span><h2>Comunicación</h2></article>
+            <article class="card" onclick="openProgram('Licenciatura', '📚', '#', '#')"><span class="icon-main">📚</span><h2>Licenciatura</h2></article>
+        </div>
+        <div id="program-view" class="program-details">
+            <div class="program-header"><div style="font-size: 4rem; margin-bottom: 10px;" id="detail-icon">🧠</div><h2 id="detail-title">Nombre del Programa</h2><p>Seleccione el plan de estudios</p></div>
+            <div class="options-grid">
+                <a href="#" target="_blank" class="option-card option-i" id="btn-i"><span class="opt-icon">📋</span><span class="opt-title">Pensum I</span><span style="font-size: 0.8rem; margin-top: 5px; color: #666;">Versión Anterior</span></a>
+                <a href="#" target="_blank" class="option-card option-h" id="btn-h"><span class="opt-icon">🎓</span><span class="opt-title">Pensum H</span><span style="font-size: 0.8rem; margin-top: 5px;">Versión Actual</span></a>
+            </div>
+            <div class="btn-back-container"><button class="btn-back" onclick="showHome()">⬅ Regresar al Menú</button></div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="cuc-seal">C</div>
+            
+            <div class="dev-info">
+                <span class="dev-title">DESARROLLO E IMPLEMENTACIÓN</span>
+                <span class="dev-name">Carlos Rodríguez | 2025</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuView = document.getElementById('menu-view'); const programView = document.getElementById('program-view'); const detailTitle = document.getElementById('detail-title'); const detailIcon = document.getElementById('detail-icon'); const btnI = document.getElementById('btn-i'); const btnH = document.getElementById('btn-h');
+        function openProgram(title, icon, linkI, linkH) { detailTitle.textContent = title; detailIcon.textContent = icon; btnI.href = linkI; btnH.href = linkH; menuView.style.display = 'none'; programView.style.display = 'flex'; programView.style.animation = 'none'; programView.offsetHeight; programView.style.animation = 'fadeIn 0.5s ease-in-out'; }
+        function showHome() { programView.style.display = 'none'; menuView.style.display = 'grid'; menuView.style.animation = 'none'; menuView.offsetHeight; menuView.style.animation = 'fadeIn 0.5s ease-in-out'; }
+    </script>
+</body>
+</html>
