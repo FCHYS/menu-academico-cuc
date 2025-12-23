@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Programas Académicos - CUC</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
     
     <style>
         /* --- ESTILOS GENERALES --- */
@@ -45,16 +45,15 @@
         .btn-back { background-color: transparent; border: 2px solid #9e0b1c; color: #9e0b1c; padding: 10px 35px; font-size: 1rem; border-radius: 50px; cursor: pointer; transition: all 0.3s ease; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
         .btn-back:hover { background-color: #9e0b1c; color: white; }
 
-        /* --- FOOTER COMPACTO --- */
+        /* --- FOOTER ESTÉTICO (NUEVO DISEÑO) --- */
         footer { 
             background-color: #000000; 
             width: 100%; 
-            padding: 0.8rem 0; /* Padding reducido (antes era 1.5rem) */
+            padding: 1.2rem 0; 
             margin-top: 3rem; 
             color: white; 
             border-top: 2px solid #333; 
         }
-        
         .footer-content { 
             width: 90%; 
             max-width: 1200px; 
@@ -62,45 +61,25 @@
             display: flex; 
             align-items: center; 
             justify-content: flex-start; 
-            gap: 10px; /* Separación reducida */
+            gap: 12px; 
         }
 
-        /* --- SELLO "C" PEQUEÑO --- */
-        .cuc-seal {
-            width: 34px;  /* Reducido de 45px */
-            height: 34px; /* Reducido de 45px */
-            background-color: #9e0b1c; 
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem; /* Fuente más pequeña */
-            font-weight: 900; 
-            color: white; 
-            border: 2px solid #ffffff; /* Borde un poco más fino */
-            box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
-            font-family: 'Montserrat', sans-serif;
-            flex-shrink: 0; /* Evita que se deforme si la pantalla es muy pequeña */
-        }
+        /* Icono Copyright */
+        .copyright-icon { font-size: 1.8rem; color: #888; line-height: 1; }
 
         .dev-info { display: flex; flex-direction: column; line-height: 1.2; }
         
-        /* Texto reducido */
-        .dev-title { 
-            font-size: 0.75rem; /* Antes 0.9rem */
-            font-weight: 700; 
-            letter-spacing: 0.5px; 
-            color: #fff; 
-        }
+        /* Título reducido */
+        .dev-title { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.5px; color: #999; margin-bottom: 4px; text-transform: uppercase; }
         
-        .dev-name { 
-            font-size: 0.7rem; /* Antes 0.85rem */
-            font-weight: 300; 
-            color: #ccc; 
-        }
+        /* Nombres en una sola línea */
+        .dev-name { font-size: 0.85rem; font-weight: 500; color: #fff; }
+        
+        /* Año reducido */
+        .dev-year { font-size: 0.65rem; color: #666; margin-top: 4px; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        @media (max-width: 600px) { .cuc-siglas { font-size: 2.5rem; } .cuc-texto span { font-size: 1rem; } .card { height: 200px; } .footer-content { justify-content: center; text-align: left; } }
+        @media (max-width: 600px) { .cuc-siglas { font-size: 2.5rem; } .cuc-texto span { font-size: 1rem; } .card { height: 200px; } .footer-content { justify-content: flex-start; text-align: left; } }
     </style>
 </head>
 <body>
@@ -117,6 +96,7 @@
             <article class="card" onclick="openProgram('Comunicación', '📢', '#', '#')"><span class="icon-main">📢</span><h2>Comunicación</h2></article>
             <article class="card" onclick="openProgram('Licenciatura', '📚', '#', '#')"><span class="icon-main">📚</span><h2>Licenciatura</h2></article>
         </div>
+        
         <div id="program-view" class="program-details">
             <div class="program-header"><div style="font-size: 4rem; margin-bottom: 10px;" id="detail-icon">🧠</div><h2 id="detail-title">Nombre del Programa</h2><p>Seleccione el plan de estudios</p></div>
             <div class="options-grid">
@@ -129,11 +109,12 @@
 
     <footer>
         <div class="footer-content">
-            <div class="cuc-seal">C</div>
+            <div class="copyright-icon">©</div>
             
             <div class="dev-info">
                 <span class="dev-title">DESARROLLO E IMPLEMENTACIÓN</span>
-                <span class="dev-name">Carlos Rodríguez | 2025</span>
+                <span class="dev-name">Carlos Rodríguez | Álvaro Romero</span>
+                <span class="dev-year">2025 · Derechos Reservados</span>
             </div>
         </div>
     </footer>
