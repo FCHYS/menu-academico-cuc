@@ -92,25 +92,52 @@
 
     <div id="main-container">
         <div id="menu-view" class="grid-menu">
-            <article class="card" onclick="openProgram('Psicología', '🧠', 'https://fchys.github.io/PSICOLOGIA-PENSUM-I/', 'https://fchys.github.io/PSICOLOGIA-PENSUM-H/')"><span class="icon-main">🧠</span><h2>Psicología</h2></article>
-            <article class="card" onclick="openProgram('Comunicación', '📢', '#', '#')"><span class="icon-main">📢</span><h2>Comunicación</h2></article>
-            <article class="card" onclick="openProgram('Licenciatura', '📚', '#', '#')"><span class="icon-main">📚</span><h2>Licenciatura</h2></article>
+            <article class="card" onclick="openProgram('Psicología', '🧠', 'https://fchys.github.io/PSICOLOGIA-PENSUM-I/', 'https://fchys.github.io/PSICOLOGIA-PENSUM-H/')">
+                <span class="icon-main">🧠</span>
+                <h2>Psicología</h2>
+            </article>
+            
+            <article class="card" onclick="openProgram('Comunicación', '📢', 'https://fchys.github.io/Comunicacion_I/', 'https://fchys.github.io/Comunicacion_H/')">
+                <span class="icon-main">📢</span>
+                <h2>Comunicación</h2>
+            </article>
+            
+            <article class="card" onclick="openProgram('Licenciatura', '📚', 'https://fchys.github.io/Licenciatura_I/', '#')">
+                <span class="icon-main">📚</span>
+                <h2>Licenciatura</h2>
+            </article>
         </div>
         
         <div id="program-view" class="program-details">
-            <div class="program-header"><div style="font-size: 4rem; margin-bottom: 10px;" id="detail-icon">🧠</div><h2 id="detail-title">Nombre del Programa</h2><p>Seleccione el plan de estudios</p></div>
-            <div class="options-grid">
-                <a href="#" target="_blank" class="option-card option-i" id="btn-i"><span class="opt-icon">📋</span><span class="opt-title">Pensum I</span><span style="font-size: 0.8rem; margin-top: 5px; color: #666;">Versión Anterior</span></a>
-                <a href="#" target="_blank" class="option-card option-h" id="btn-h"><span class="opt-icon">🎓</span><span class="opt-title">Pensum H</span><span style="font-size: 0.8rem; margin-top: 5px;">Versión Actual</span></a>
+            <div class="program-header">
+                <div style="font-size: 4rem; margin-bottom: 10px;" id="detail-icon">🧠</div>
+                <h2 id="detail-title">Nombre del Programa</h2>
+                <p>Seleccione el plan de estudios</p>
             </div>
-            <div class="btn-back-container"><button class="btn-back" onclick="showHome()">⬅ Regresar al Menú</button></div>
+            
+            <div class="options-grid">
+                <a href="#" target="_blank" class="option-card option-i" id="btn-i">
+                    <span class="opt-icon">📋</span>
+                    <span class="opt-title">Pensum I</span>
+                    <span style="font-size: 0.8rem; margin-top: 5px; color: #666;">Versión Anterior</span>
+                </a>
+                
+                <a href="#" target="_blank" class="option-card option-h" id="btn-h">
+                    <span class="opt-icon">🎓</span>
+                    <span class="opt-title">Pensum H</span>
+                    <span style="font-size: 0.8rem; margin-top: 5px;">Versión Actual</span>
+                </a>
+            </div>
+            
+            <div class="btn-back-container">
+                <button class="btn-back" onclick="showHome()">⬅ Regresar al Menú</button>
+            </div>
         </div>
     </div>
 
     <footer>
         <div class="footer-content">
             <div class="copyright-icon">©</div>
-            
             <div class="dev-info">
                 <span class="dev-title">DESARROLLO E IMPLEMENTACIÓN</span>
                 <span class="dev-name">Carlos Rodríguez | Álvaro Romero</span>
@@ -120,9 +147,45 @@
     </footer>
 
     <script>
-        const menuView = document.getElementById('menu-view'); const programView = document.getElementById('program-view'); const detailTitle = document.getElementById('detail-title'); const detailIcon = document.getElementById('detail-icon'); const btnI = document.getElementById('btn-i'); const btnH = document.getElementById('btn-h');
-        function openProgram(title, icon, linkI, linkH) { detailTitle.textContent = title; detailIcon.textContent = icon; btnI.href = linkI; btnH.href = linkH; menuView.style.display = 'none'; programView.style.display = 'flex'; programView.style.animation = 'none'; programView.offsetHeight; programView.style.animation = 'fadeIn 0.5s ease-in-out'; }
-        function showHome() { programView.style.display = 'none'; menuView.style.display = 'grid'; menuView.style.animation = 'none'; menuView.offsetHeight; menuView.style.animation = 'fadeIn 0.5s ease-in-out'; }
+        const menuView = document.getElementById('menu-view'); 
+        const programView = document.getElementById('program-view'); 
+        const detailTitle = document.getElementById('detail-title'); 
+        const detailIcon = document.getElementById('detail-icon'); 
+        const btnI = document.getElementById('btn-i'); 
+        const btnH = document.getElementById('btn-h');
+
+        function openProgram(title, icon, linkI, linkH) { 
+            detailTitle.textContent = title; 
+            detailIcon.textContent = icon; 
+            btnI.href = linkI; 
+            
+            // Lógica para detectar si el link H existe o no (Caso Licenciatura)
+            if (linkH === '#') {
+                btnH.href = '#';
+                btnH.style.opacity = '0.5';
+                btnH.style.pointerEvents = 'none'; // Desactiva el clic
+                btnH.innerHTML = '<span class="opt-icon">🚫</span><span class="opt-title">No Disponible</span>';
+            } else {
+                btnH.href = linkH;
+                btnH.style.opacity = '1';
+                btnH.style.pointerEvents = 'auto'; // Reactiva el clic
+                btnH.innerHTML = '<span class="opt-icon">🎓</span><span class="opt-title">Pensum H</span><span style="font-size: 0.8rem; margin-top: 5px;">Versión Actual</span>';
+            }
+
+            menuView.style.display = 'none'; 
+            programView.style.display = 'flex'; 
+            programView.style.animation = 'none'; 
+            programView.offsetHeight; /* Reinicia animación */
+            programView.style.animation = 'fadeIn 0.5s ease-in-out'; 
+        }
+
+        function showHome() { 
+            programView.style.display = 'none'; 
+            menuView.style.display = 'grid'; 
+            menuView.style.animation = 'none'; 
+            menuView.offsetHeight; /* Reinicia animación */
+            menuView.style.animation = 'fadeIn 0.5s ease-in-out'; 
+        }
     </script>
 </body>
 </html>
