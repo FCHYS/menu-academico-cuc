@@ -4,188 +4,293 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Programas Académicos - CUC</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
     
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,700,1,0" />
+
     <style>
         /* --- ESTILOS GENERALES --- */
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; }
         body { background-color: #f4f4f4; color: #333; display: flex; flex-direction: column; min-height: 100vh; }
 
+        .material-symbols-rounded { font-variation-settings: 'FILL' 1, 'wght' 700, 'GRAD' 0, 'opsz' 48; line-height: 1; }
+
         /* --- HEADER --- */
-        header { background-color: #9e0b1c; width: 100%; padding: 1.5rem 0; box-shadow: 0 4px 15px rgba(0,0,0,0.3); margin-bottom: 2rem; border-bottom: 4px solid #7a0816; display: flex; justify-content: center; align-items: center; z-index: 10; cursor: pointer; }
-        .logo-container { display: flex; align-items: center; gap: 12px; color: white; padding: 0 20px; }
-        .cuc-siglas { font-weight: 900; font-size: 3.5rem; line-height: 1; letter-spacing: -2px; }
-        .cuc-texto { display: flex; flex-direction: column; border-left: 1px solid rgba(255,255,255,0.3); padding-left: 12px; }
-        .cuc-texto span { font-weight: 300; font-size: 1.2rem; line-height: 1; text-transform: uppercase; letter-spacing: 1px; }
+        header { background-color: #A3161A; width: 100%; padding: 2rem 0; box-shadow: 0 4px 15px rgba(0,0,0,0.3); border-bottom: 4px solid #7A0A0E; display: flex; justify-content: center; align-items: center; z-index: 10; margin-bottom: 1.5rem; cursor: pointer; position: relative;}
+        
+        /* SELLO V2.0 EN LA ESQUINA */
+        .version-badge {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .faculty-title-container { display: flex; flex-direction: column; align-items: center; text-align: center; color: white; padding: 0 20px; }
+        .faculty-title-container span { font-family: 'Cinzel', serif; line-height: 1.15; text-transform: uppercase; letter-spacing: 1px; font-size: 1.45rem; }
+        .faculty-title-container .linea-1 { font-weight: 600; color: rgba(255,255,255,0.9); }
+        .faculty-title-container .linea-2 { font-weight: 800; font-size: 1.55rem; }
 
         /* --- CONTENEDOR PRINCIPAL --- */
-        #main-container { width: 90%; max-width: 1200px; margin: 0 auto; position: relative; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
-        .grid-menu { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; padding-bottom: 2rem; justify-content: center; animation: fadeIn 0.5s ease-in-out; }
-        .card { background: white; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); border: 1px solid #e1e1e1; cursor: pointer; padding: 3rem 1.5rem; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 300px; }
-        .card:hover { transform: translateY(-8px); box-shadow: 0 20px 30px rgba(158, 11, 28, 0.15); border-color: #9e0b1c; }
-        .card h2 { font-size: 1.6rem; font-weight: 700; margin-top: 20px; text-transform: uppercase; color: #333; }
-        .icon-main { font-size: 5rem; color: #9e0b1c; }
+        #main-container { width: 90%; max-width: 1200px; margin: 0 auto; position: relative; flex-grow: 1; display: flex; flex-direction: column; align-items: center; }
+        
+        .decano-container { margin-bottom: 2.5rem; text-align: center; animation: fadeIn 0.5s ease-in-out; }
+        .btn-decano { background: #A3161A; color: white; border: none; padding: 10px 30px; border-radius: 50px; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 10px rgba(163, 22, 26, 0.3); letter-spacing: 1px; display: flex; align-items: center; gap: 10px; margin: 0 auto;}
+        .btn-decano:hover { background: #7A0A0E; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(163, 22, 26, 0.4); }
+
+        .grid-menu { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2.5rem; padding-bottom: 2rem; justify-content: center; animation: fadeIn 0.5s ease-in-out; width: 100%; }
+        
+        .card { background: white; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); border: 1px solid #e1e1e1; text-align: center; display: flex; flex-direction: column; height: 320px; overflow: hidden; }
+        .card:hover { transform: translateY(-8px); box-shadow: 0 20px 30px rgba(163, 22, 26, 0.15); border-color: #A3161A; }
+        
+        .card-main { flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; padding: 2rem 1.5rem; }
+        
+        .card-main h2 { font-size: 1.3rem; font-weight: 800; margin-top: 15px; text-transform: uppercase; color: #333; line-height: 1.3; }
+        
+        .icon-main { 
+            font-size: 5rem; 
+            background: linear-gradient(135deg, #A3161A 0%, #7A0A0E 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(2px 5px 5px rgba(122, 10, 14, 0.25));
+        }
+
+        .card-footer { padding: 15px; background: #fafafa; border-top: 1px solid #eee; display: flex; justify-content: center; }
+        .btn-director { background: transparent; border: 2px solid #ccc; color: #666; padding: 8px 20px; font-size: 0.75rem; border-radius: 50px; cursor: pointer; transition: all 0.3s ease; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 6px; margin: 0 auto;}
+        .btn-director:hover { background: #A3161A; color: white; border-color: #A3161A; }
 
         /* --- VISTA DETALLE --- */
-        .program-details { display: none; flex-direction: column; align-items: center; animation: fadeIn 0.5s ease-in-out; text-align: center; width: 100%; }
+        .program-details { display: none; flex-direction: column; align-items: center; animation: fadeIn 0.5s ease-in-out; text-align: center; width: 100%; margin-top: 2rem;}
         .program-header { margin-bottom: 3rem; }
-        .program-header h2 { font-size: 2.5rem; color: #9e0b1c; text-transform: uppercase; font-weight: 700; margin-bottom: 1rem; }
-        .options-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; width: 100%; max-width: 800px; }
-        .option-card { background: white; border-radius: 15px; padding: 3rem 2rem; text-decoration: none; color: #333; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: 2px solid transparent; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; }
-        .option-i { border-color: #ccc; }
-        .option-i:hover { background-color: #f0f0f0; transform: scale(1.03); border-color: #999; }
-        .option-i .opt-icon { color: #666; }
-        .option-h { border-color: #ffcccc; }
-        .option-h:hover { background-color: #9e0b1c; color: white; transform: scale(1.03); border-color: #9e0b1c; }
-        .option-h:hover .opt-icon { color: white; }
-        .option-h .opt-icon { color: #9e0b1c; }
-        .opt-icon { font-size: 3rem; margin-bottom: 1rem; transition: color 0.3s; }
-        .opt-title { font-size: 1.5rem; font-weight: 700; text-transform: uppercase; }
-        .btn-back-container { margin-top: 4rem; width: 100%; text-align: center; }
-        .btn-back { background-color: transparent; border: 2px solid #9e0b1c; color: #9e0b1c; padding: 10px 35px; font-size: 1rem; border-radius: 50px; cursor: pointer; transition: all 0.3s ease; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
-        .btn-back:hover { background-color: #9e0b1c; color: white; }
-
-        /* --- FOOTER ESTÉTICO (NUEVO DISEÑO) --- */
-        footer { 
-            background-color: #000000; 
-            width: 100%; 
-            padding: 1.2rem 0; 
-            margin-top: 3rem; 
-            color: white; 
-            border-top: 2px solid #333; 
+        .program-header h2 { font-size: 2.2rem; color: #A3161A; text-transform: uppercase; font-weight: 800; margin-top: 10px; margin-bottom: 0.5rem; line-height: 1.2; }
+        .program-header p { color: #666; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem; }
+        
+        .options-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; width: 100%; }
+        
+        .option-card { background: white; border-radius: 12px; padding: 2.5rem 1.5rem; text-decoration: none; color: #333; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: 2px solid #e1e1e1; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; min-width: 240px; flex: 1; max-width: 300px; }
+        .option-card:hover { transform: scale(1.03); border-color: #A3161A; background-color: #A3161A; }
+        .option-card:hover .opt-title { color: white; }
+        .option-card:hover .opt-icon { background: white; -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: none;}
+        
+        .opt-icon { 
+            font-size: 3.5rem; 
+            margin-bottom: 15px; 
+            background: linear-gradient(135deg, #A3161A 0%, #7A0A0E 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: all 0.3s ease;
         }
-        .footer-content { 
-            width: 90%; 
-            max-width: 1200px; 
-            margin: 0 auto; 
-            display: flex; 
-            align-items: center; 
-            justify-content: flex-start; 
-            gap: 12px; 
-        }
+        .opt-title { font-size: 1.2rem; font-weight: 800; text-transform: uppercase; transition: color 0.3s; text-align: center; }
+        
+        .btn-back { background-color: transparent; border: 2px solid #A3161A; color: #A3161A; padding: 10px 35px; font-size: 0.9rem; border-radius: 50px; cursor: pointer; transition: all 0.3s ease; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; justify-content: center; gap: 8px; margin: 4rem auto 0;}
+        .btn-back:hover { background: #A3161A; color: white; }
 
-        /* Icono Copyright */
-        .copyright-icon { font-size: 1.8rem; color: #888; line-height: 1; }
+        /* --- MODAL CONTACTO --- */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(8px); display: none; justify-content: center; align-items: center; z-index: 1000; opacity: 0; transition: opacity 0.3s; }
+        .modal-overlay.show { display: flex; opacity: 1; }
+        .contact-card { background: white; width: 90%; max-width: 450px; border-radius: 16px; padding: 40px 30px; position: relative; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.3); transform: scale(0.9); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .modal-overlay.show .contact-card { transform: scale(1); }
+        .close-modal { position: absolute; top: 15px; right: 20px; background: none; border: none; font-size: 2rem; cursor: pointer; color: #aaa; line-height: 1;}
+        .close-modal:hover { color: #A3161A; }
+        .contact-avatar { font-size: 4rem; margin-bottom: 15px; background: linear-gradient(135deg, #A3161A 0%, #7A0A0E 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .contact-role { color: #A3161A; font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
+        .contact-name { font-size: 1.6rem; font-weight: 900; color: #333; margin-bottom: 20px; text-transform: uppercase; }
+        .contact-details { background: #f9f9f9; padding: 15px; border-radius: 8px; border: 1px solid #eee; text-align: left; }
+        .contact-details p { font-size: 0.9rem; color: #555; margin-bottom: 12px; font-weight: 500; display: flex; align-items: center; gap: 10px; }
 
-        .dev-info { display: flex; flex-direction: column; line-height: 1.2; }
-        
-        /* Título reducido */
-        .dev-title { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.5px; color: #999; margin-bottom: 4px; text-transform: uppercase; }
-        
-        /* Nombres en una sola línea */
-        .dev-name { font-size: 0.85rem; font-weight: 500; color: #fff; }
-        
-        /* Año reducido */
-        .dev-year { font-size: 0.65rem; color: #666; margin-top: 4px; }
+        /* --- FOOTER --- */
+        footer { background-color: #000000; width: 100%; padding: 15px 0; margin-top: auto; color: white; border-top: 5px solid #7A0A0E; }
+        .footer-content { width: 90%; max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+        .dev-info { display: flex; gap: 8px; align-items: center;}
+        .dev-name { font-size: 0.75rem; font-weight: 600; color: #fff; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        @media (max-width: 600px) { .cuc-siglas { font-size: 2.5rem; } .cuc-texto span { font-size: 1rem; } .card { height: 200px; } .footer-content { justify-content: flex-start; text-align: left; } }
+        @media (max-width: 768px) { 
+            .faculty-title-container span { font-size: 1.1rem; } 
+            .faculty-title-container .linea-2 { font-size: 1.2rem; }
+            .options-grid { flex-direction: column; align-items: center; }
+            .option-card { width: 100%; max-width: none; }
+            .version-badge { top: 10px; right: 10px; font-size: 0.6rem; }
+        }
     </style>
 </head>
 <body>
     <header onclick="showHome()">
-        <div class="logo-container">
-            <div class="cuc-siglas">CUC</div>
-            <div class="cuc-texto"><span class="linea-1">Universidad</span><span>de la Costa</span></div>
+        <div class="version-badge">V2.0</div>
+        <div class="faculty-title-container">
+            <span class="linea-1">Facultad Ciencias</span>
+            <span class="linea-2">Humanas y Sociales</span>
         </div>
     </header>
 
     <div id="main-container">
+        <div class="decano-container" id="decano-section">
+            <button class="btn-decano" onclick="abrirModal('decano')">
+                <span class="material-symbols-rounded">account_balance</span> Decano de la Facultad
+            </button>
+        </div>
+
         <div id="menu-view" class="grid-menu">
-            <article class="card" onclick="openProgram('Psicología', '🧠', 'https://fchys.github.io/PSICOLOGIA-PENSUM-I/', 'https://fchys.github.io/PSICOLOGIA-PENSUM-H/')">
-                <span class="icon-main">🧠</span>
-                <h2>Psicología</h2>
+            <article class="card">
+                <div class="card-main" onclick="prepareDetails('psicologia')">
+                    <span class="icon-main material-symbols-rounded">psychology</span>
+                    <h2>Psicología</h2>
+                </div>
+                <div class="card-footer">
+                    <button class="btn-director" onclick="abrirModal('psicologia')">
+                        <span class="material-symbols-rounded">contact_mail</span> Dirección de Programa
+                    </button>
+                </div>
             </article>
             
-            <article class="card" onclick="openProgram('Comunicación', '📢', 'https://fchys.github.io/Comunicacion_I/', 'https://fchys.github.io/Comunicacion_H/')">
-                <span class="icon-main">📢</span>
-                <h2>Comunicación</h2>
+            <article class="card">
+                <div class="card-main" onclick="prepareDetails('comunicacion')">
+                    <span class="icon-main material-symbols-rounded">campaign</span>
+                    <h2>Comunicación Social<br>y Medios Digitales</h2>
+                </div>
+                <div class="card-footer">
+                    <button class="btn-director" onclick="abrirModal('comunicacion')">
+                        <span class="material-symbols-rounded">contact_mail</span> Dirección de Programa
+                    </button>
+                </div>
             </article>
             
-            <article class="card" onclick="openProgram('Licenciatura', '📚', 'https://fchys.github.io/Licenciatura_I/', '#')">
-                <span class="icon-main">📚</span>
-                <h2>Licenciatura</h2>
+            <article class="card">
+                <div class="card-main" onclick="prepareDetails('licenciatura')">
+                    <span class="icon-main material-symbols-rounded">school</span>
+                    <h2>Licenciatura</h2>
+                </div>
+                <div class="card-footer">
+                    <button class="btn-director" onclick="abrirModal('licenciatura')">
+                        <span class="material-symbols-rounded">contact_mail</span> Dirección de Programa
+                    </button>
+                </div>
             </article>
         </div>
         
         <div id="program-view" class="program-details">
             <div class="program-header">
-                <div style="font-size: 4rem; margin-bottom: 10px;" id="detail-icon">🧠</div>
-                <h2 id="detail-title">Nombre del Programa</h2>
+                <span class="icon-main material-symbols-rounded" id="detail-icon" style="margin-bottom:0;">psychology</span>
+                <h2 id="detail-title">Nombre</h2>
                 <p>Seleccione el plan de estudios</p>
             </div>
-            
-            <div class="options-grid">
-                <a href="#" target="_blank" class="option-card option-i" id="btn-i">
-                    <span class="opt-icon">📋</span>
-                    <span class="opt-title">Pensum I</span>
-                    <span style="font-size: 0.8rem; margin-top: 5px; color: #666;">Versión Anterior</span>
-                </a>
-                
-                <a href="#" target="_blank" class="option-card option-h" id="btn-h">
-                    <span class="opt-icon">🎓</span>
-                    <span class="opt-title">Pensum H</span>
-                    <span style="font-size: 0.8rem; margin-top: 5px;">Versión Actual</span>
-                </a>
-            </div>
-            
-            <div class="btn-back-container">
-                <button class="btn-back" onclick="showHome()">⬅ Regresar al Menú</button>
-            </div>
+            <div class="options-grid" id="options-grid">
+                </div>
+            <button class="btn-back" onclick="showHome()">
+                <span class="material-symbols-rounded">arrow_back</span> Regresar al Menú
+            </button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="contact-modal">
+        <div class="contact-card">
+            <button class="close-modal" onclick="cerrarModal()">&times;</button>
+            <span class="contact-avatar material-symbols-rounded" id="modal-avatar">account_circle</span>
+            <div class="contact-role" id="modal-role">Cargo</div>
+            <div class="contact-name" id="modal-name">Nombre</div>
+            <div class="contact-details" id="modal-details"></div>
         </div>
     </div>
 
     <footer>
         <div class="footer-content">
-            <div class="copyright-icon">©</div>
             <div class="dev-info">
-                <span class="dev-title">DESARROLLO E IMPLEMENTACIÓN</span>
-                <span class="dev-name">Carlos Rodríguez | Álvaro Romero</span>
-                <span class="dev-year">2025 · Derechos Reservados</span>
+                <span class="dev-name">Desarrollo e implementación: © Carlos Rodríguez</span>
             </div>
+            <div class="dev-name">2026 · CUC</div>
         </div>
     </footer>
 
     <script>
-        const menuView = document.getElementById('menu-view'); 
-        const programView = document.getElementById('program-view'); 
-        const detailTitle = document.getElementById('detail-title'); 
-        const detailIcon = document.getElementById('detail-icon'); 
-        const btnI = document.getElementById('btn-i'); 
-        const btnH = document.getElementById('btn-h');
-
-        function openProgram(title, icon, linkI, linkH) { 
-            detailTitle.textContent = title; 
-            detailIcon.textContent = icon; 
-            btnI.href = linkI; 
-            
-            // Lógica para detectar si el link H existe o no (Caso Licenciatura)
-            if (linkH === '#') {
-                btnH.href = '#';
-                btnH.style.opacity = '0.5';
-                btnH.style.pointerEvents = 'none'; // Desactiva el clic
-                btnH.innerHTML = '<span class="opt-icon">🚫</span><span class="opt-title">No Disponible</span>';
-            } else {
-                btnH.href = linkH;
-                btnH.style.opacity = '1';
-                btnH.style.pointerEvents = 'auto'; // Reactiva el clic
-                btnH.innerHTML = '<span class="opt-icon">🎓</span><span class="opt-title">Pensum H</span><span style="font-size: 0.8rem; margin-top: 5px;">Versión Actual</span>';
+        /* --- BASE DE DATOS DEL MENÚ CON ICONOGRAFÍA UNIFICADA --- */
+        const programData = {
+            'psicologia': {
+                name: 'Psicología', icon: 'psychology',
+                plans: [
+                    { name: 'Plan Ciclos I', link: 'https://fchys.github.io/PSICOLOGIA-PENSUM-I/', icon: 'workspace_premium' },
+                    { name: 'Pensum H', link: 'https://fchys.github.io/PSICOLOGIA-PENSUM-H/', icon: 'history_edu' }
+                ]
+            },
+            'comunicacion': {
+                name: 'Comunicación Social y Medios Digitales', icon: 'campaign',
+                plans: [
+                    // ¡AQUÍ ESTÁ EL CAMBIO! new_releases para el Plan J
+                    { name: 'Plan Ciclos J', link: 'https://fchys.github.io/Comunicacion_J/', icon: 'new_releases' },
+                    { name: 'Plan Ciclos I', link: 'https://fchys.github.io/Comunicacion_I/', icon: 'workspace_premium' },
+                    { name: 'Pensum H', link: 'https://fchys.github.io/Comunicacion_H/', icon: 'history_edu' }
+                ]
+            },
+            'licenciatura': {
+                name: 'Licenciatura', icon: 'school',
+                plans: [
+                    { name: 'Plan Ciclos I', link: 'https://fchys.github.io/Licenciatura_I/', icon: 'workspace_premium' }
+                ]
             }
+        };
 
-            menuView.style.display = 'none'; 
-            programView.style.display = 'flex'; 
-            programView.style.animation = 'none'; 
-            programView.offsetHeight; /* Reinicia animación */
-            programView.style.animation = 'fadeIn 0.5s ease-in-out'; 
+        function prepareDetails(id) {
+            const data = programData[id];
+            document.getElementById('detail-title').textContent = data.name;
+            document.getElementById('detail-icon').textContent = data.icon;
+            const grid = document.getElementById('options-grid');
+            grid.innerHTML = '';
+
+            data.plans.forEach(plan => {
+                const card = document.createElement('a');
+                card.className = 'option-card';
+                card.href = plan.link;
+                card.target = '_blank';
+                card.innerHTML = `
+                    <span class="opt-icon material-symbols-rounded">${plan.icon}</span>
+                    <span class="opt-title">${plan.name}</span>
+                `;
+                grid.appendChild(card);
+            });
+
+            document.getElementById('menu-view').style.display = 'none';
+            document.getElementById('decano-section').style.display = 'none';
+            document.getElementById('program-view').style.display = 'flex';
         }
 
-        function showHome() { 
-            programView.style.display = 'none'; 
-            menuView.style.display = 'grid'; 
-            menuView.style.animation = 'none'; 
-            menuView.offsetHeight; /* Reinicia animación */
-            menuView.style.animation = 'fadeIn 0.5s ease-in-out'; 
+        function showHome() {
+            document.getElementById('program-view').style.display = 'none';
+            document.getElementById('menu-view').style.display = 'grid';
+            document.getElementById('decano-section').style.display = 'block';
         }
+
+        /* --- CONTACTOS --- */
+        const directivos = {
+            'decano': { rol: 'Decano de la Facultad', nombre: 'Nombre del Decano', icon: 'account_balance', correo: 'decano@cuc.edu.co', tel: 'Ext. 1234', ofi: 'Bloque X' },
+            'psicologia': { rol: 'Dirección de Programa: Psicología', nombre: 'Diana Molina Machado', icon: 'psychology', correo: 'dmolina@cuc.edu.co', tel: 'Ext. 5678', ofi: 'Bloque Y' },
+            'comunicacion': { rol: 'Dirección de Programa: Comunicación', nombre: 'Nombre del Director', icon: 'campaign', correo: 'comunicacion@cuc.edu.co', tel: 'Ext. 9012', ofi: 'Bloque Z' },
+            'licenciatura': { rol: 'Dirección de Programa: Licenciatura', nombre: 'Nombre del Director', icon: 'school', correo: 'licenciatura@cuc.edu.co', tel: 'Ext. 3456', ofi: 'Bloque W' }
+        };
+
+        function abrirModal(id) {
+            const d = directivos[id];
+            document.getElementById('modal-role').textContent = d.rol;
+            document.getElementById('modal-name').textContent = d.nombre;
+            document.getElementById('modal-avatar').textContent = d.icon;
+            document.getElementById('modal-details').innerHTML = `
+                <p><span class="material-symbols-rounded" style="color:#A3161A">mail</span> ${d.correo}</p>
+                <p><span class="material-symbols-rounded" style="color:#A3161A">call</span> ${d.tel}</p>
+                <p><span class="material-symbols-rounded" style="color:#A3161A">domain</span> ${d.ofi}</p>
+            `;
+            const modal = document.getElementById('contact-modal');
+            modal.style.display = 'flex';
+            setTimeout(() => modal.classList.add('show'), 10);
+        }
+
+        function cerrarModal() {
+            const modal = document.getElementById('contact-modal');
+            modal.classList.remove('show');
+            setTimeout(() => modal.style.display = 'none', 300);
+        }
+        window.onclick = e => { if(e.target.id == 'contact-modal') cerrarModal(); }
     </script>
 </body>
 </html>
