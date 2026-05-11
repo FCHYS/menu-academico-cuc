@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Programas Académicos - CUC</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,700,1,0" />
 
@@ -30,10 +30,27 @@
             letter-spacing: 2px;
         }
 
+        /* --- NUEVA TIPOGRAFÍA SIMÉTRICA DE ALTO IMPACTO --- */
         .faculty-title-container { display: flex; flex-direction: column; align-items: center; text-align: center; color: white; padding: 0 20px; }
-        .faculty-title-container span { font-family: 'Cinzel', serif; line-height: 1.15; text-transform: uppercase; letter-spacing: 1px; font-size: 1.45rem; }
-        .faculty-title-container .linea-1 { font-weight: 600; color: rgba(255,255,255,0.9); }
-        .faculty-title-container .linea-2 { font-weight: 800; font-size: 1.55rem; }
+        .faculty-title-container span { font-family: 'Montserrat', sans-serif; line-height: 1.1; text-transform: uppercase; margin: 0;}
+        
+        /* Línea superior espaciada para igualar el ancho de la línea inferior */
+        .faculty-title-container .linea-1 { 
+            font-weight: 600; 
+            color: rgba(255,255,255,0.9); 
+            font-size: 1.15rem; 
+            letter-spacing: 8px; /* Mucho espacio para crear el bloque */
+            margin-bottom: 2px;
+            margin-right: -8px; /* Compensa el espacio extra al final para centrar perfecto */
+        }
+        
+        /* Línea inferior ultra-gruesa para impacto masivo */
+        .faculty-title-container .linea-2 { 
+            font-weight: 900; 
+            font-size: 2.1rem; 
+            letter-spacing: 1px; 
+            text-shadow: 2px 4px 10px rgba(0,0,0,0.2); /* Sutil sombra para darle cuerpo */
+        }
 
         /* --- CONTENEDOR PRINCIPAL --- */
         #main-container { width: 90%; max-width: 1200px; margin: 0 auto; position: relative; flex-grow: 1; display: flex; flex-direction: column; align-items: center; }
@@ -97,7 +114,9 @@
         .close-modal { position: absolute; top: 15px; right: 20px; background: none; border: none; font-size: 2rem; cursor: pointer; color: #aaa; line-height: 1;}
         .close-modal:hover { color: #A3161A; }
         .contact-avatar { font-size: 4rem; margin-bottom: 15px; background: linear-gradient(135deg, #A3161A 0%, #7A0A0E 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .contact-role { color: #A3161A; font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
+        
+        .contact-role { color: #A3161A; font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; line-height: 1.4; }
+        
         .contact-name { font-size: 1.6rem; font-weight: 900; color: #333; margin-bottom: 20px; text-transform: uppercase; }
         .contact-details { background: #f9f9f9; padding: 15px; border-radius: 8px; border: 1px solid #eee; text-align: left; }
         .contact-details p { font-size: 0.9rem; color: #555; margin-bottom: 12px; font-weight: 500; display: flex; align-items: center; gap: 10px; }
@@ -109,9 +128,10 @@
         .dev-name { font-size: 0.75rem; font-weight: 600; color: #fff; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
         @media (max-width: 768px) { 
-            .faculty-title-container span { font-size: 1.1rem; } 
-            .faculty-title-container .linea-2 { font-size: 1.2rem; }
+            .faculty-title-container .linea-1 { font-size: 0.85rem; letter-spacing: 5px; margin-right: -5px; } 
+            .faculty-title-container .linea-2 { font-size: 1.5rem; }
             .options-grid { flex-direction: column; align-items: center; }
             .option-card { width: 100%; max-width: none; }
             .version-badge { top: 10px; right: 10px; font-size: 0.6rem; }
@@ -178,8 +198,7 @@
                 <h2 id="detail-title">Nombre</h2>
                 <p>Seleccione el plan de estudios</p>
             </div>
-            <div class="options-grid" id="options-grid">
-                </div>
+            <div class="options-grid" id="options-grid"></div>
             <button class="btn-back" onclick="showHome()">
                 <span class="material-symbols-rounded">arrow_back</span> Regresar al Menú
             </button>
@@ -206,7 +225,6 @@
     </footer>
 
     <script>
-        /* --- BASE DE DATOS DEL MENÚ CON ICONOGRAFÍA UNIFICADA --- */
         const programData = {
             'psicologia': {
                 name: 'Psicología', icon: 'psychology',
@@ -218,7 +236,6 @@
             'comunicacion': {
                 name: 'Comunicación Social y Medios Digitales', icon: 'campaign',
                 plans: [
-                    // ¡AQUÍ ESTÁ EL CAMBIO! new_releases para el Plan J
                     { name: 'Plan Ciclos J', link: 'https://fchys.github.io/Comunicacion_J/', icon: 'new_releases' },
                     { name: 'Plan Ciclos I', link: 'https://fchys.github.io/Comunicacion_I/', icon: 'workspace_premium' },
                     { name: 'Pensum H', link: 'https://fchys.github.io/Comunicacion_H/', icon: 'history_edu' }
@@ -262,17 +279,48 @@
             document.getElementById('decano-section').style.display = 'block';
         }
 
-        /* --- CONTACTOS --- */
+        /* --- CONTACTOS CON SALTOS DE LÍNEA --- */
         const directivos = {
-            'decano': { rol: 'Decano de la Facultad', nombre: 'Nombre del Decano', icon: 'account_balance', correo: 'decano@cuc.edu.co', tel: 'Ext. 1234', ofi: 'Bloque X' },
-            'psicologia': { rol: 'Dirección de Programa: Psicología', nombre: 'Diana Molina Machado', icon: 'psychology', correo: 'dmolina@cuc.edu.co', tel: 'Ext. 5678', ofi: 'Bloque Y' },
-            'comunicacion': { rol: 'Dirección de Programa: Comunicación', nombre: 'Nombre del Director', icon: 'campaign', correo: 'comunicacion@cuc.edu.co', tel: 'Ext. 9012', ofi: 'Bloque Z' },
-            'licenciatura': { rol: 'Dirección de Programa: Licenciatura', nombre: 'Nombre del Director', icon: 'school', correo: 'licenciatura@cuc.edu.co', tel: 'Ext. 3456', ofi: 'Bloque W' }
+            'decano': { 
+                rol: 'Decano de la Facultad', 
+                nombre: 'José Lozano Jiménez', 
+                icon: 'account_balance', 
+                correo: 'jlozano5@cuc.edu.co', 
+                tel: '(605) 3319714 ext 2029', 
+                ofi: 'Bloque 7, Piso 5' 
+            },
+            'psicologia': { 
+                rol: 'Dirección de Programa:<br>Psicología', 
+                nombre: 'Diana Molina Machado', 
+                icon: 'psychology', 
+                correo: 'dmolina26@cuc.edu.co', 
+                tel: '(605) 3319714 ext 2029', 
+                ofi: 'Bloque 7, Piso 5' 
+            },
+            'comunicacion': { 
+                rol: 'Dirección de Programa:<br>Comunicación Social y Medios Digitales', 
+                nombre: 'Margarita Quintero León', 
+                icon: 'campaign', 
+                correo: 'mquinter25@cuc.edu.co', 
+                tel: '(605) 3319714 ext 2029', 
+                ofi: 'Bloque 7, Piso 5' 
+            },
+            'licenciatura': { 
+                rol: 'Dirección de Programa:<br>Licenciatura en Educación Básica Primaria', 
+                nombre: 'Judith Castillo Martelo', 
+                icon: 'school', 
+                correo: 'jcantill39@cuc.edu.co', 
+                tel: '(605) 3319714 ext 2029', 
+                ofi: 'Bloque 7, Piso 5' 
+            }
         };
 
         function abrirModal(id) {
             const d = directivos[id];
-            document.getElementById('modal-role').textContent = d.rol;
+            
+            // Usamos innerHTML para que reconozca la etiqueta <br>
+            document.getElementById('modal-role').innerHTML = d.rol;
+            
             document.getElementById('modal-name').textContent = d.nombre;
             document.getElementById('modal-avatar').textContent = d.icon;
             document.getElementById('modal-details').innerHTML = `
