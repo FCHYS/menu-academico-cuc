@@ -1,342 +1,530 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Programas Académicos - CUC</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,700,1,0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programas Académicos — Facultad Ciencias Humanas y Sociales · CUC</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,600,1,0" />
+<style>
+  :root{
+    --brand:#A3161A;
+    --brand-deep:#7A0A0E;
+    --brand-darker:#560508;
+    --ink:#1a1a1f;
+    --ink-soft:#5a5a66;
+    --line:rgba(20,20,30,.08);
+    --surface:#ffffff;
+    --bg:#f3eeea;
+    --bg-2:#ece4de;
+    --gold:#c9a24a;
+    --shadow-sm:0 1px 2px rgba(20,20,30,.04), 0 2px 6px rgba(20,20,30,.04);
+    --shadow-md:0 10px 30px rgba(122,10,14,.08), 0 2px 8px rgba(20,20,30,.05);
+    --shadow-lg:0 30px 60px -20px rgba(122,10,14,.25), 0 10px 30px rgba(20,20,30,.08);
+    --radius:18px;
+    --radius-lg:24px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  html,body{min-height:100%}
+  body{
+    color:var(--ink);
+    display:flex;flex-direction:column;min-height:100vh;
+    background:
+      radial-gradient(1200px 600px at 85% -10%, rgba(163,22,26,.10), transparent 60%),
+      radial-gradient(900px 500px at -10% 20%, rgba(201,162,74,.12), transparent 60%),
+      linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+  }
+  .material-symbols-rounded{font-variation-settings:'FILL' 1,'wght' 600,'GRAD' 0,'opsz' 48;line-height:1}
 
-    <style>
-        /* --- ESTILOS GENERALES --- */
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; }
-        body { background-color: #f4f4f4; color: #333; display: flex; flex-direction: column; min-height: 100vh; }
+  /* HEADER */
+  header{
+    position:relative;width:100%;
+    background:
+      radial-gradient(800px 300px at 15% 120%, rgba(255,255,255,.10), transparent 60%),
+      radial-gradient(600px 250px at 90% -20%, rgba(255,255,255,.08), transparent 60%),
+      linear-gradient(135deg, var(--brand-darker) 0%, var(--brand) 55%, var(--brand-deep) 100%);
+    color:#fff;padding:2.4rem 1.5rem 2.6rem;
+    cursor:pointer;overflow:hidden;
+    border-bottom:1px solid rgba(0,0,0,.2);
+    box-shadow:0 10px 40px -10px rgba(122,10,14,.4);
+  }
+  header::before{
+    content:"";position:absolute;inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+    background-size:42px 42px;
+    mask-image:radial-gradient(ellipse at center, black 30%, transparent 75%);
+    pointer-events:none;
+  }
+  .header-inner{position:relative;max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+  .crest{display:flex;align-items:center;gap:14px;min-width:0}
+  .crest-mark{
+    width:54px;height:54px;border-radius:14px;flex-shrink:0;
+    background:linear-gradient(135deg,#fff 0%,#fbe9d6 100%);
+    color:var(--brand-deep);display:grid;place-items:center;
+    font-family:'Fraunces',serif;font-weight:800;font-size:1.6rem;
+    box-shadow:inset 0 0 0 1px rgba(122,10,14,.15), 0 8px 20px rgba(0,0,0,.25);
+  }
+  .crest-text{display:flex;flex-direction:column;min-width:0}
+  .crest-text .eyebrow{font-size:.7rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.7)}
+  .crest-text .title{font-family:'Fraunces',serif;font-weight:800;font-size:1.55rem;line-height:1.05;letter-spacing:-.01em}
+  .crest-text .title em{font-style:italic;color:#fbe9d6;font-weight:600}
+  .version-pill{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:8px 14px;border-radius:999px;
+    background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+    font-size:.7rem;font-weight:700;letter-spacing:2px;color:rgba(255,255,255,.9);
+    backdrop-filter:blur(8px);
+  }
+  .version-pill .dot{width:6px;height:6px;border-radius:50%;background:#7ee787;box-shadow:0 0 8px #7ee787}
 
-        .material-symbols-rounded { font-variation-settings: 'FILL' 1, 'wght' 700, 'GRAD' 0, 'opsz' 48; line-height: 1; }
+  /* MAIN */
+  main{flex:1;width:100%;max-width:1200px;margin:0 auto;padding:2.5rem 1.5rem 3rem;display:flex;flex-direction:column;align-items:center}
 
-        /* --- HEADER --- */
-        header { background-color: #A3161A; width: 100%; padding: 2rem 0; box-shadow: 0 4px 15px rgba(0,0,0,0.3); border-bottom: 4px solid #7A0A0E; display: flex; justify-content: center; align-items: center; z-index: 10; margin-bottom: 1.5rem; cursor: pointer; position: relative;}
-        
-        /* SELLO V2.0 EN LA ESQUINA */
-        .version-badge {
-            position: absolute;
-            top: 15px;
-            right: 25px;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.8rem;
-            font-weight: 800;
-            letter-spacing: 2px;
-        }
+  /* Decano bar */
+  .decano-container{width:100%;display:flex;justify-content:center;margin-bottom:2.5rem;animation:fadeUp .5s ease both}
+  .btn-decano{
+    display:inline-flex;align-items:center;gap:14px;cursor:pointer;
+    padding:14px 22px 14px 16px;border-radius:999px;border:1px solid var(--line);
+    background:rgba(255,255,255,.7);backdrop-filter:blur(10px);
+    color:var(--ink);font-weight:600;font-size:.92rem;
+    box-shadow:var(--shadow-sm);transition:all .25s ease;
+  }
+  .btn-decano:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);border-color:rgba(163,22,26,.3)}
+  .btn-decano .ico{
+    width:38px;height:38px;border-radius:50%;display:grid;place-items:center;
+    background:linear-gradient(135deg,var(--brand),var(--brand-deep));color:#fff;
+    box-shadow:0 6px 14px rgba(163,22,26,.35);
+  }
+  .btn-decano .ico .material-symbols-rounded{font-size:22px}
+  .btn-decano .label small{display:block;font-size:.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--ink-soft);font-weight:700}
+  .btn-decano .label strong{display:block;font-family:'Fraunces',serif;font-weight:700;font-size:1.05rem;color:var(--ink)}
+  .btn-decano .chev{color:var(--brand);transition:transform .25s}
+  .btn-decano:hover .chev{transform:translateX(4px)}
 
-        /* --- NUEVA TIPOGRAFÍA SIMÉTRICA DE ALTO IMPACTO --- */
-        .faculty-title-container { display: flex; flex-direction: column; align-items: center; text-align: center; color: white; padding: 0 20px; }
-        .faculty-title-container span { font-family: 'Montserrat', sans-serif; line-height: 1.1; text-transform: uppercase; margin: 0;}
-        
-        /* Línea superior espaciada para igualar el ancho de la línea inferior */
-        .faculty-title-container .linea-1 { 
-            font-weight: 600; 
-            color: rgba(255,255,255,0.9); 
-            font-size: 1.15rem; 
-            letter-spacing: 8px; /* Mucho espacio para crear el bloque */
-            margin-bottom: 2px;
-            margin-right: -8px; /* Compensa el espacio extra al final para centrar perfecto */
-        }
-        
-        /* Línea inferior ultra-gruesa para impacto masivo */
-        .faculty-title-container .linea-2 { 
-            font-weight: 900; 
-            font-size: 2.1rem; 
-            letter-spacing: 1px; 
-            text-shadow: 2px 4px 10px rgba(0,0,0,0.2); /* Sutil sombra para darle cuerpo */
-        }
+  /* Section heading */
+  .section-head{width:100%;text-align:center;margin-bottom:1.8rem;animation:fadeUp .5s .05s ease both}
+  .section-head .kicker{display:inline-flex;align-items:center;gap:8px;font-size:.7rem;letter-spacing:3px;text-transform:uppercase;font-weight:700;color:var(--brand);}
+  .section-head .kicker::before,.section-head .kicker::after{content:"";display:block;width:24px;height:1px;background:var(--brand);opacity:.5}
+  .section-head h1{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(1.7rem,3.2vw,2.4rem);letter-spacing:-.02em;color:var(--ink);margin-top:8px}
+  .section-head h1 em{font-style:italic;color:var(--brand);font-weight:600}
 
-        /* --- CONTENEDOR PRINCIPAL --- */
-        #main-container { width: 90%; max-width: 1200px; margin: 0 auto; position: relative; flex-grow: 1; display: flex; flex-direction: column; align-items: center; }
-        
-        .decano-container { margin-bottom: 2.5rem; text-align: center; animation: fadeIn 0.5s ease-in-out; }
-        .btn-decano { background: #A3161A; color: white; border: none; padding: 10px 30px; border-radius: 50px; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 10px rgba(163, 22, 26, 0.3); letter-spacing: 1px; display: flex; align-items: center; gap: 10px; margin: 0 auto;}
-        .btn-decano:hover { background: #7A0A0E; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(163, 22, 26, 0.4); }
+  /* Cards */
+  .grid-menu{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;width:100%;animation:fadeUp .5s .1s ease both}
+  .card{
+    position:relative;background:var(--surface);border-radius:var(--radius-lg);
+    border:1px solid var(--line);overflow:hidden;display:flex;flex-direction:column;
+    box-shadow:var(--shadow-sm);transition:all .35s cubic-bezier(.2,.7,.2,1);
+    isolation:isolate;
+  }
+  
+  /* Fondo translúcido con imagen */
+  .card-bg{
+    position:absolute;inset:0;z-index:0;
+    background-size:cover;background-position:center;
+    opacity:0.08; 
+    filter:grayscale(100%);
+    transition:transform .7s cubic-bezier(.2,.7,.2,1), opacity .4s ease, filter .4s ease;
+  }
+  .card:hover .card-bg{
+    transform:scale(1.1);
+    opacity:0.25;
+    filter:grayscale(0%);
+  }
 
-        .grid-menu { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2.5rem; padding-bottom: 2rem; justify-content: center; animation: fadeIn 0.5s ease-in-out; width: 100%; }
-        
-        .card { background: white; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); border: 1px solid #e1e1e1; text-align: center; display: flex; flex-direction: column; height: 320px; overflow: hidden; }
-        .card:hover { transform: translateY(-8px); box-shadow: 0 20px 30px rgba(163, 22, 26, 0.15); border-color: #A3161A; }
-        
-        .card-main { flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; padding: 2rem 1.5rem; }
-        
-        .card-main h2 { font-size: 1.3rem; font-weight: 800; margin-top: 15px; text-transform: uppercase; color: #333; line-height: 1.3; }
-        
-        .icon-main { 
-            font-size: 5rem; 
-            background: linear-gradient(135deg, #A3161A 0%, #7A0A0E 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(2px 5px 5px rgba(122, 10, 14, 0.25));
-        }
+  .card::after{
+    content:"";position:absolute;top:0;left:0;right:0;height:4px;
+    background:linear-gradient(90deg,var(--brand),var(--brand-deep),var(--gold));
+    transform:scaleX(.2);transform-origin:left;transition:transform .4s ease;
+    z-index: 2;
+  }
+  .card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:rgba(163,22,26,.2)}
+  .card:hover::after{transform:scaleX(1)}
+  
+  /* Contenido principal */
+  .card-main{position:relative;flex:1;padding:2.2rem 1.6rem 1.6rem;display:flex;flex-direction:column;align-items:flex-start;text-align:left;cursor:pointer;z-index:1}
+  
+  /* Miniatura de imagen */
+  .img-wrap-small{
+    width:64px;height:64px;border-radius:16px;margin-bottom:1.3rem;
+    overflow:hidden;border:2px solid #fff;
+    box-shadow:0 6px 14px rgba(0,0,0,.1);
+    transition:all .35s ease;
+    background: #fff;
+  }
+  .img-wrap-small img{
+    width:100%;height:100%;object-fit:cover;
+    transition:transform .6s cubic-bezier(.2,.7,.2,1);
+  }
+  .card:hover .img-wrap-small{
+    border-color:var(--brand);
+    box-shadow:0 12px 24px -8px rgba(163,22,26,.45);
+  }
+  .card:hover .img-wrap-small img{
+    transform:scale(1.15);
+  }
+  
+  .card h2{font-family:'Fraunces',serif;font-weight:700;font-size:1.35rem;line-height:1.2;letter-spacing:-.01em;color:var(--ink);text-shadow: 0 1px 3px rgba(255,255,255,0.8);}
+  .card .meta{margin-top:.7rem;font-size:.82rem;color:var(--ink-soft);display:flex;align-items:center;gap:6px;background: rgba(255,255,255,0.7); padding: 2px 8px; border-radius: 4px;}
+  .card .meta .pin{width:6px;height:6px;border-radius:50%;background:var(--brand);opacity:.7}
+  
+  .card-cta{
+    margin-top:1.4rem;display:inline-flex;align-items:center;gap:8px;
+    font-size:.78rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--brand);
+    background: rgba(255,255,255,0.8); padding: 4px 10px; border-radius: 6px;
+  }
+  .card-cta .arr{transition:transform .25s}
+  .card:hover .card-cta .arr{transform:translateX(4px)}
 
-        .card-footer { padding: 15px; background: #fafafa; border-top: 1px solid #eee; display: flex; justify-content: center; }
-        .btn-director { background: transparent; border: 2px solid #ccc; color: #666; padding: 8px 20px; font-size: 0.75rem; border-radius: 50px; cursor: pointer; transition: all 0.3s ease; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 6px; margin: 0 auto;}
-        .btn-director:hover { background: #A3161A; color: white; border-color: #A3161A; }
+  .card-footer{position:relative;padding:14px 16px;border-top:1px dashed var(--line);background:rgba(248,244,240,.85);backdrop-filter:blur(10px);z-index:1}
+  .btn-director{
+    width:100%;display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    background:transparent;border:1px solid var(--line);color:var(--ink-soft);
+    padding:10px 14px;font-size:.74rem;border-radius:999px;cursor:pointer;
+    font-weight:700;text-transform:uppercase;letter-spacing:1px;transition:all .25s ease;
+  }
+  .btn-director:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .btn-director .material-symbols-rounded{font-size:16px}
 
-        /* --- VISTA DETALLE --- */
-        .program-details { display: none; flex-direction: column; align-items: center; animation: fadeIn 0.5s ease-in-out; text-align: center; width: 100%; margin-top: 2rem;}
-        .program-header { margin-bottom: 3rem; }
-        .program-header h2 { font-size: 2.2rem; color: #A3161A; text-transform: uppercase; font-weight: 800; margin-top: 10px; margin-bottom: 0.5rem; line-height: 1.2; }
-        .program-header p { color: #666; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem; }
-        
-        .options-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; width: 100%; }
-        
-        .option-card { background: white; border-radius: 12px; padding: 2.5rem 1.5rem; text-decoration: none; color: #333; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: 2px solid #e1e1e1; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; min-width: 240px; flex: 1; max-width: 300px; }
-        .option-card:hover { transform: scale(1.03); border-color: #A3161A; background-color: #A3161A; }
-        .option-card:hover .opt-title { color: white; }
-        .option-card:hover .opt-icon { background: white; -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: none;}
-        
-        .opt-icon { 
-            font-size: 3.5rem; 
-            margin-bottom: 15px; 
-            background: linear-gradient(135deg, #A3161A 0%, #7A0A0E 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            transition: all 0.3s ease;
-        }
-        .opt-title { font-size: 1.2rem; font-weight: 800; text-transform: uppercase; transition: color 0.3s; text-align: center; }
-        
-        .btn-back { background-color: transparent; border: 2px solid #A3161A; color: #A3161A; padding: 10px 35px; font-size: 0.9rem; border-radius: 50px; cursor: pointer; transition: all 0.3s ease; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; justify-content: center; gap: 8px; margin: 4rem auto 0;}
-        .btn-back:hover { background: #A3161A; color: white; }
+  /* ======== Detail view ======== */
+  .program-details{display:none;flex-direction:column;align-items:center;width:100%;animation:fadeUp .45s ease both}
+  
+  .program-header{display:flex;flex-direction:column;align-items:center;text-align:center;margin-bottom:1.5rem} 
+  
+  .detail-badge{
+    width:72px;height:72px; 
+    border-radius:20px;overflow:hidden;
+    margin-bottom:0.8rem;border:3px solid #fff;
+    box-shadow:0 12px 30px -8px rgba(163,22,26,.45);
+    background: #fff;
+  }
+  .detail-badge img {
+    width:100%;height:100%;object-fit:cover;
+  }
+  
+  .program-header h2{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(1.5rem,3vw,2.2rem);color:var(--ink);letter-spacing:-.02em;line-height:1.15}
+  .program-header p{margin-top:0.4rem;font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--brand);font-weight:700}
 
-        /* --- MODAL CONTACTO --- */
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(8px); display: none; justify-content: center; align-items: center; z-index: 1000; opacity: 0; transition: opacity 0.3s; }
-        .modal-overlay.show { display: flex; opacity: 1; }
-        .contact-card { background: white; width: 90%; max-width: 450px; border-radius: 16px; padding: 40px 30px; position: relative; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.3); transform: scale(0.9); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .modal-overlay.show .contact-card { transform: scale(1); }
-        .close-modal { position: absolute; top: 15px; right: 20px; background: none; border: none; font-size: 2rem; cursor: pointer; color: #aaa; line-height: 1;}
-        .close-modal:hover { color: #A3161A; }
-        .contact-avatar { font-size: 4rem; margin-bottom: 15px; background: linear-gradient(135deg, #A3161A 0%, #7A0A0E 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        
-        .contact-role { color: #A3161A; font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; line-height: 1.4; }
-        
-        .contact-name { font-size: 1.6rem; font-weight: 900; color: #333; margin-bottom: 20px; text-transform: uppercase; }
-        .contact-details { background: #f9f9f9; padding: 15px; border-radius: 8px; border: 1px solid #eee; text-align: left; }
-        .contact-details p { font-size: 0.9rem; color: #555; margin-bottom: 12px; font-weight: 500; display: flex; align-items: center; gap: 10px; }
+  .options-grid{
+    display:flex;flex-wrap:wrap;justify-content:center;
+    gap:1.2rem;width:100%;max-width:800px;
+  }
+  
+  /* TARJETAS DE PLANES - CUADRADOS PEQUEÑOS */
+  .option-card{
+    position:relative;background:var(--surface);border-radius:var(--radius);
+    padding:1.4rem 1rem; 
+    text-decoration:none;color:var(--ink);
+    border:1px solid var(--line);box-shadow:var(--shadow-sm);
+    display:flex;flex-direction:column;align-items:center;text-align:center;gap:0.8rem; 
+    transition:all .3s cubic-bezier(.2,.7,.2,1);overflow:hidden;
+    width: 160px; height: 160px; 
+    flex-shrink: 0;
+    justify-content: flex-start;
+  }
+  .option-card::after{
+    content:"";position:absolute;inset:auto -40% -60% auto;width:150px;height:150px;border-radius:50%;
+    background:radial-gradient(circle,rgba(163,22,26,.18),transparent 70%);
+    transition:transform .5s ease;
+  }
+  .option-card:hover{transform:translateY(-4px);border-color:var(--brand);box-shadow:var(--shadow-md)}
+  .option-card:hover::after{transform:scale(1.5)}
+  
+  .opt-icon-wrap{
+    width:44px;height:44px; 
+    border-radius:12px;display:grid;place-items:center;
+    background:linear-gradient(135deg,rgba(163,22,26,.1),rgba(122,10,14,.05));
+    color:var(--brand);border:1px solid rgba(163,22,26,.12);position:relative;z-index:1;
+  }
+  .opt-icon-wrap .material-symbols-rounded{font-size:22px}
+  .option-card:hover .opt-icon-wrap{background:linear-gradient(135deg,var(--brand),var(--brand-deep));color:#fff;border-color:transparent}
+  
+  .opt-title{font-family:'Fraunces',serif;font-weight:700;font-size:1.05rem;line-height:1.2;letter-spacing:-.01em;position:relative;z-index:1}
+  .opt-link{margin-top:auto;display:inline-flex;align-items:center;gap:4px;font-size:.65rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--brand);font-weight:700;position:relative;z-index:1}
+  .opt-link .arr{transition:transform .25s}
+  .option-card:hover .opt-link .arr{transform:translate(3px,-3px)}
 
-        /* --- FOOTER --- */
-        footer { background-color: #000000; width: 100%; padding: 15px 0; margin-top: auto; color: white; border-top: 5px solid #7A0A0E; }
-        .footer-content { width: 90%; max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
-        .dev-info { display: flex; gap: 8px; align-items: center;}
-        .dev-name { font-size: 0.75rem; font-weight: 600; color: #fff; }
+  .btn-back{
+    margin:2rem auto 0; 
+    display:inline-flex;align-items:center;gap:10px;
+    background:transparent;border:1px solid var(--line);color:var(--ink);
+    padding:10px 20px;border-radius:999px;cursor:pointer;font-weight:600;font-size:.8rem;
+    transition:all .25s ease;
+  }
+  .btn-back:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        
-        @media (max-width: 768px) { 
-            .faculty-title-container .linea-1 { font-size: 0.85rem; letter-spacing: 5px; margin-right: -5px; } 
-            .faculty-title-container .linea-2 { font-size: 1.5rem; }
-            .options-grid { flex-direction: column; align-items: center; }
-            .option-card { width: 100%; max-width: none; }
-            .version-badge { top: 10px; right: 10px; font-size: 0.6rem; }
-        }
-    </style>
+  /* Modal */
+  .modal-overlay{position:fixed;inset:0;background:rgba(20,15,18,.55);backdrop-filter:blur(14px);display:none;justify-content:center;align-items:center;z-index:1000;opacity:0;transition:opacity .3s;padding:1rem}
+  .modal-overlay.show{display:flex;opacity:1}
+  .contact-card{
+    background:#fff;width:100%;max-width:460px;border-radius:24px;
+    padding:0;overflow:hidden;position:relative;
+    transform:translateY(20px) scale(.96);transition:transform .35s cubic-bezier(.2,.8,.2,1.1);
+    box-shadow:0 40px 80px -20px rgba(0,0,0,.4);
+  }
+  .modal-overlay.show .contact-card{transform:translateY(0) scale(1)}
+  .contact-hero{
+    position:relative;padding:2.2rem 2rem 1.5rem;text-align:center;color:#fff;
+    background:
+      radial-gradient(400px 200px at 20% 0%, rgba(255,255,255,.15), transparent 60%),
+      linear-gradient(135deg,var(--brand-darker),var(--brand) 60%,var(--brand-deep));
+  }
+  .contact-hero::before{
+    content:"";position:absolute;inset:0;opacity:.4;
+    background-image:linear-gradient(rgba(255,255,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.07) 1px,transparent 1px);
+    background-size:30px 30px;
+    mask-image:radial-gradient(ellipse at center,black 40%,transparent 80%);
+  }
+  .close-modal{position:absolute;top:14px;right:14px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);width:32px;height:32px;border-radius:50%;color:#fff;cursor:pointer;display:grid;place-items:center;transition:all .2s;z-index:2}
+  .close-modal:hover{background:#fff;color:var(--brand)}
+  .contact-avatar{
+    position:relative;width:78px;height:78px;border-radius:50%;margin:0 auto .9rem;
+    background:#fff;color:var(--brand);display:grid;place-items:center;
+    box-shadow:0 12px 30px rgba(0,0,0,.25),inset 0 0 0 4px rgba(255,255,255,.6);
+  }
+  .contact-avatar .material-symbols-rounded{font-size:40px}
+  .contact-role{position:relative;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:2.5px;color:rgba(255,255,255,.85);line-height:1.5}
+  .contact-name{position:relative;font-family:'Fraunces',serif;font-weight:700;font-size:1.5rem;color:#fff;margin-top:6px;letter-spacing:-.01em}
+  .contact-body{padding:1.4rem 1.6rem 1.8rem}
+  .contact-details{display:flex;flex-direction:column;gap:.6rem}
+  .contact-details p{
+    display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:12px;
+    background:#faf7f5;border:1px solid var(--line);font-size:.88rem;color:var(--ink);font-weight:500;
+  }
+  .contact-details p .material-symbols-rounded{font-size:20px;color:var(--brand);flex-shrink:0}
+
+  /* Footer */
+  footer{
+    margin-top:auto;background:#0e0a0b;color:rgba(255,255,255,.7);
+    border-top:1px solid rgba(255,255,255,.06);
+  }
+  .footer-content{max-width:1200px;margin:0 auto;padding:1.1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.75rem}
+  .footer-content .brand-mark{color:var(--brand);font-weight:800;letter-spacing:1px}
+
+  @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+  @media(max-width:720px){
+    .crest-text .title{font-size:1.2rem}
+    .crest-text .eyebrow{font-size:.6rem;letter-spacing:2px}
+    .crest-mark{width:46px;height:46px;font-size:1.3rem}
+    .version-pill{padding:6px 10px;font-size:.6rem}
+    .btn-decano{padding:10px 16px 10px 12px}
+    .btn-decano .label strong{font-size:.95rem}
+  }
+</style>
 </head>
 <body>
-    <header onclick="showHome()">
-        <div class="version-badge">V2.0</div>
-        <div class="faculty-title-container">
-            <span class="linea-1">Facultad Ciencias</span>
-            <span class="linea-2">Humanas y Sociales</span>
-        </div>
-    </header>
 
-    <div id="main-container">
-        <div class="decano-container" id="decano-section">
-            <button class="btn-decano" onclick="abrirModal('decano')">
-                <span class="material-symbols-rounded">account_balance</span> Decano de la Facultad
-            </button>
-        </div>
-
-        <div id="menu-view" class="grid-menu">
-            <article class="card">
-                <div class="card-main" onclick="prepareDetails('psicologia')">
-                    <span class="icon-main material-symbols-rounded">psychology</span>
-                    <h2>Psicología</h2>
-                </div>
-                <div class="card-footer">
-                    <button class="btn-director" onclick="abrirModal('psicologia')">
-                        <span class="material-symbols-rounded">contact_mail</span> Dirección de Programa
-                    </button>
-                </div>
-            </article>
-            
-            <article class="card">
-                <div class="card-main" onclick="prepareDetails('comunicacion')">
-                    <span class="icon-main material-symbols-rounded">campaign</span>
-                    <h2>Comunicación Social<br>y Medios Digitales</h2>
-                </div>
-                <div class="card-footer">
-                    <button class="btn-director" onclick="abrirModal('comunicacion')">
-                        <span class="material-symbols-rounded">contact_mail</span> Dirección de Programa
-                    </button>
-                </div>
-            </article>
-            
-            <article class="card">
-                <div class="card-main" onclick="prepareDetails('licenciatura')">
-                    <span class="icon-main material-symbols-rounded">school</span>
-                    <h2>Licenciatura</h2>
-                </div>
-                <div class="card-footer">
-                    <button class="btn-director" onclick="abrirModal('licenciatura')">
-                        <span class="material-symbols-rounded">contact_mail</span> Dirección de Programa
-                    </button>
-                </div>
-            </article>
-        </div>
-        
-        <div id="program-view" class="program-details">
-            <div class="program-header">
-                <span class="icon-main material-symbols-rounded" id="detail-icon" style="margin-bottom:0;">psychology</span>
-                <h2 id="detail-title">Nombre</h2>
-                <p>Seleccione el plan de estudios</p>
-            </div>
-            <div class="options-grid" id="options-grid"></div>
-            <button class="btn-back" onclick="showHome()">
-                <span class="material-symbols-rounded">arrow_back</span> Regresar al Menú
-            </button>
-        </div>
+<header onclick="showHome()">
+  <div class="header-inner">
+    <div class="crest">
+      <div class="crest-mark">C</div>
+      <div class="crest-text">
+        <span class="eyebrow">Universidad de la Costa</span>
+        <span class="title">Facultad de <em>Ciencias Humanas y Sociales</em></span>
+      </div>
     </div>
+    <div class="version-pill"><span class="dot"></span> V 3.0</div>
+  </div>
+</header>
 
-    <div class="modal-overlay" id="contact-modal">
-        <div class="contact-card">
-            <button class="close-modal" onclick="cerrarModal()">&times;</button>
-            <span class="contact-avatar material-symbols-rounded" id="modal-avatar">account_circle</span>
-            <div class="contact-role" id="modal-role">Cargo</div>
-            <div class="contact-name" id="modal-name">Nombre</div>
-            <div class="contact-details" id="modal-details"></div>
-        </div>
+<main>
+  <div class="decano-container" id="decano-section">
+    <button class="btn-decano" onclick="abrirModal('decano')">
+      <span class="ico"><span class="material-symbols-rounded">account_balance</span></span>
+      <span class="label">
+        <small>Liderazgo</small>
+        <strong>Decano de la Facultad</strong>
+      </span>
+      <span class="chev material-symbols-rounded">arrow_forward</span>
+    </button>
+  </div>
+
+  <div class="section-head" id="section-head">
+    <span class="kicker">Programas Académicos</span>
+    <h1>Explora tu <em>plan de estudios</em></h1>
+  </div>
+
+  <div id="menu-view" class="grid-menu">
+    <article class="card">
+      <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=600&q=80')"></div>
+      <div class="card-main" onclick="prepareDetails('psicologia')">
+        <div class="img-wrap-small"><img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=400&q=80" alt="Psicología"></div>
+        <h2>Psicología</h2>
+        <div class="meta"><span class="pin"></span> 2 planes disponibles</div>
+        <div class="card-cta">Ver pensum <span class="arr material-symbols-rounded" style="font-size:16px">arrow_forward</span></div>
+      </div>
+      <div class="card-footer">
+        <button class="btn-director" onclick="abrirModal('psicologia')">
+          <span class="material-symbols-rounded">contact_mail</span> Dirección de Programa
+        </button>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1589903308904-1010c2294adc?auto=format&fit=crop&w=600&q=80')"></div>
+      <div class="card-main" onclick="prepareDetails('comunicacion')">
+        <div class="img-wrap-small"><img src="https://images.unsplash.com/photo-1589903308904-1010c2294adc?auto=format&fit=crop&w=400&q=80" alt="Medios Digitales"></div>
+        <h2>Comunicación social<br>y medios digitales</h2>
+        <div class="meta"><span class="pin"></span> 3 planes disponibles</div>
+        <div class="card-cta">Ver pensum <span class="arr material-symbols-rounded" style="font-size:16px">arrow_forward</span></div>
+      </div>
+      <div class="card-footer">
+        <button class="btn-director" onclick="abrirModal('comunicacion')">
+          <span class="material-symbols-rounded">contact_mail</span> Dirección de Programa
+        </button>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=600&q=80')"></div>
+      <div class="card-main" onclick="prepareDetails('licenciatura')">
+        <div class="img-wrap-small"><img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=400&q=80" alt="Licenciatura"></div>
+        <h2>Licenciatura</h2>
+        <div class="meta"><span class="pin"></span> 1 plan disponible</div>
+        <div class="card-cta">Ver pensum <span class="arr material-symbols-rounded" style="font-size:16px">arrow_forward</span></div>
+      </div>
+      <div class="card-footer">
+        <button class="btn-director" onclick="abrirModal('licenciatura')">
+          <span class="material-symbols-rounded">contact_mail</span> Dirección de Programa
+        </button>
+      </div>
+    </article>
+  </div>
+
+  <div id="program-view" class="program-details">
+    <div class="program-header">
+      <div class="detail-badge"><img id="detail-img" src="" alt="Imagen del programa"></div>
+      <h2 id="detail-title">Nombre</h2>
+      <p>Seleccione el plan de estudios</p>
     </div>
+    <div class="options-grid" id="options-grid"></div>
+    <button class="btn-back" onclick="showHome()">
+      <span class="material-symbols-rounded">arrow_back</span> Regresar al menú
+    </button>
+  </div>
+</main>
 
-    <footer>
-        <div class="footer-content">
-            <div class="dev-info">
-                <span class="dev-name">Desarrollo e implementación: © Carlos Rodríguez</span>
-            </div>
-            <div class="dev-name">2026 · CUC</div>
-        </div>
-    </footer>
+<div class="modal-overlay" id="contact-modal">
+  <div class="contact-card">
+    <div class="contact-hero">
+      <button class="close-modal" onclick="cerrarModal()"><span class="material-symbols-rounded" style="font-size:18px">close</span></button>
+      <div class="contact-avatar"><span class="material-symbols-rounded" id="modal-avatar">account_circle</span></div>
+      <div class="contact-role" id="modal-role">Cargo</div>
+      <div class="contact-name" id="modal-name">Nombre</div>
+    </div>
+    <div class="contact-body">
+      <div class="contact-details" id="modal-details"></div>
+    </div>
+  </div>
+</div>
 
-    <script>
-        const programData = {
-            'psicologia': {
-                name: 'Psicología', icon: 'psychology',
-                plans: [
-                    { name: 'Plan Ciclos I', link: 'https://fchys.github.io/PSICOLOGIA-PENSUM-I/', icon: 'workspace_premium' },
-                    { name: 'Pensum H', link: 'https://fchys.github.io/PSICOLOGIA-PENSUM-H/', icon: 'history_edu' }
-                ]
-            },
-            'comunicacion': {
-                name: 'Comunicación Social y Medios Digitales', icon: 'campaign',
-                plans: [
-                    { name: 'Plan Ciclos J', link: 'https://fchys.github.io/Comunicacion_J/', icon: 'new_releases' },
-                    { name: 'Plan Ciclos I', link: 'https://fchys.github.io/Comunicacion_I/', icon: 'workspace_premium' },
-                    { name: 'Pensum H', link: 'https://fchys.github.io/Comunicacion_H/', icon: 'history_edu' }
-                ]
-            },
-            'licenciatura': {
-                name: 'Licenciatura', icon: 'school',
-                plans: [
-                    { name: 'Plan Ciclos I', link: 'https://fchys.github.io/Licenciatura_I/', icon: 'workspace_premium' }
-                ]
-            }
-        };
+<footer>
+  <div class="footer-content">
+    <div>Desarrollo e implementación · © <strong style="color:#fff">Carlos Rodríguez</strong></div>
+    <div>Periodo académico: <span id="periodo-actual" class="brand-mark" style="color: #c9a24a;"></span></div>
+    <div>CUC</div>
+  </div>
+</footer>
 
-        function prepareDetails(id) {
-            const data = programData[id];
-            document.getElementById('detail-title').textContent = data.name;
-            document.getElementById('detail-icon').textContent = data.icon;
-            const grid = document.getElementById('options-grid');
-            grid.innerHTML = '';
+<script>
+function configurarPeriodo() {
+    const fecha = new Date();
+    const año = fecha.getFullYear();
+    const mes = fecha.getMonth() + 1;
+    const periodo = mes >= 6 ? '2' : '1';
+    document.getElementById('periodo-actual').textContent = `${año}-${periodo}`;
+}
+configurarPeriodo();
 
-            data.plans.forEach(plan => {
-                const card = document.createElement('a');
-                card.className = 'option-card';
-                card.href = plan.link;
-                card.target = '_blank';
-                card.innerHTML = `
-                    <span class="opt-icon material-symbols-rounded">${plan.icon}</span>
-                    <span class="opt-title">${plan.name}</span>
-                `;
-                grid.appendChild(card);
-            });
+const programData = {
+  'psicologia': { 
+    name:'Psicología', 
+    img:'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=400&q=80', 
+    plans:[
+      { name:'Plan ciclos I', link:'https://fchys.github.io/PSICOLOGIA-PENSUM-I/', icon:'workspace_premium' },
+      { name:'Pensum H', link:'https://fchys.github.io/PSICOLOGIA-PENSUM-H/', icon:'history_edu' }
+    ]
+  },
+  'comunicacion': { 
+    name:'Comunicación social y medios digitales', 
+    img:'https://images.unsplash.com/photo-1589903308904-1010c2294adc?auto=format&fit=crop&w=400&q=80', 
+    plans:[
+      { name:'Plan ciclos J', link:'https://fchys.github.io/Comunicacion_J/', icon:'videocam' }, 
+      { name:'Plan ciclos I', link:'https://fchys.github.io/Comunicacion_I/', icon:'podcasts' }, 
+      { name:'Pensum H', link:'https://fchys.github.io/Comunicacion_H/', icon:'newspaper' } 
+    ]
+  },
+  'licenciatura': { 
+    name:'Licenciatura', 
+    img:'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=400&q=80', 
+    plans:[
+      { name:'Plan ciclos I', link:'https://fchys.github.io/Licenciatura_I/', icon:'workspace_premium' }
+    ]
+  }
+};
 
-            document.getElementById('menu-view').style.display = 'none';
-            document.getElementById('decano-section').style.display = 'none';
-            document.getElementById('program-view').style.display = 'flex';
-        }
+function prepareDetails(id){
+  const data = programData[id];
+  document.getElementById('detail-title').textContent = data.name;
+  document.getElementById('detail-img').src = data.img; 
+  const grid = document.getElementById('options-grid');
+  grid.innerHTML = '';
+  data.plans.forEach(plan => {
+    const card = document.createElement('a');
+    card.className = 'option-card';
+    card.href = plan.link; 
+    card.target = '_blank'; 
+    card.rel = 'noopener';
+    card.innerHTML = `
+      <div class="opt-icon-wrap"><span class="material-symbols-rounded">${plan.icon}</span></div>
+      <span class="opt-title">${plan.name}</span>
+      <span class="opt-link">Abrir pensum <span class="arr material-symbols-rounded" style="font-size:12px">north_east</span></span>
+    `;
+    grid.appendChild(card);
+  });
+  document.getElementById('menu-view').style.display='none';
+  document.getElementById('decano-section').style.display='none';
+  document.getElementById('section-head').style.display='none';
+  document.getElementById('program-view').style.display='flex';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function showHome(){
+  document.getElementById('program-view').style.display='none';
+  document.getElementById('menu-view').style.display='grid';
+  document.getElementById('decano-section').style.display='flex';
+  document.getElementById('section-head').style.display='block';
+}
 
-        function showHome() {
-            document.getElementById('program-view').style.display = 'none';
-            document.getElementById('menu-view').style.display = 'grid';
-            document.getElementById('decano-section').style.display = 'block';
-        }
+const directivos = {
+  'decano':{rol:'Decano de la Facultad',nombre:'José Lozano Jiménez',icon:'account_balance',correo:'jlozano5@cuc.edu.co',tel:'(605) 3319714 ext 2029',ofi:'Bloque 7, Piso 5'},
+  'psicologia':{rol:'Dirección de programa<br>Psicología',nombre:'Diana Molina Machado',icon:'psychology',correo:'dmolina26@cuc.edu.co',tel:'(605) 3319714 ext 2029',ofi:'Bloque 7, Piso 5'},
+  'comunicacion':{rol:'Dirección de programa<br>Comunicación social y medios digitales',nombre:'Margarita Quintero León',icon:'campaign',correo:'mquinter25@cuc.edu.co',tel:'(605) 3319714 ext 2029',ofi:'Bloque 7, Piso 5'},
+  'licenciatura':{rol:'Dirección de programa<br>Licenciatura en educación básica primaria',nombre:'Judith Castillo Martelo',icon:'school',correo:'jcantill39@cuc.edu.co',tel:'(605) 3319714 ext 2029',ofi:'Bloque 7, Piso 5'}
+};
 
-        /* --- CONTACTOS CON SALTOS DE LÍNEA --- */
-        const directivos = {
-            'decano': { 
-                rol: 'Decano de la Facultad', 
-                nombre: 'José Lozano Jiménez', 
-                icon: 'account_balance', 
-                correo: 'jlozano5@cuc.edu.co', 
-                tel: '(605) 3319714 ext 2029', 
-                ofi: 'Bloque 7, Piso 5' 
-            },
-            'psicologia': { 
-                rol: 'Dirección de Programa:<br>Psicología', 
-                nombre: 'Diana Molina Machado', 
-                icon: 'psychology', 
-                correo: 'dmolina26@cuc.edu.co', 
-                tel: '(605) 3319714 ext 2029', 
-                ofi: 'Bloque 7, Piso 5' 
-            },
-            'comunicacion': { 
-                rol: 'Dirección de Programa:<br>Comunicación Social y Medios Digitales', 
-                nombre: 'Margarita Quintero León', 
-                icon: 'campaign', 
-                correo: 'mquinter25@cuc.edu.co',  
-                ofi: 'Bloque 1, Piso 3' 
-            },
-            'licenciatura': { 
-                rol: 'Dirección de Programa:<br>Licenciatura en Educación Básica Primaria', 
-                nombre: 'Judith Castillo Martelo', 
-                icon: 'school', 
-                correo: 'jcantill39@cuc.edu.co',  
-                ofi: 'Casa del Maestro' 
-            }
-        };
-
-        function abrirModal(id) {
-            const d = directivos[id];
-            
-            // Usamos innerHTML para que reconozca la etiqueta <br>
-            document.getElementById('modal-role').innerHTML = d.rol;
-            
-            document.getElementById('modal-name').textContent = d.nombre;
-            document.getElementById('modal-avatar').textContent = d.icon;
-            document.getElementById('modal-details').innerHTML = `
-                <p><span class="material-symbols-rounded" style="color:#A3161A">mail</span> ${d.correo}</p>
-                <p><span class="material-symbols-rounded" style="color:#A3161A">call</span> ${d.tel}</p>
-                <p><span class="material-symbols-rounded" style="color:#A3161A">domain</span> ${d.ofi}</p>
-            `;
-            const modal = document.getElementById('contact-modal');
-            modal.style.display = 'flex';
-            setTimeout(() => modal.classList.add('show'), 10);
-        }
-
-        function cerrarModal() {
-            const modal = document.getElementById('contact-modal');
-            modal.classList.remove('show');
-            setTimeout(() => modal.style.display = 'none', 300);
-        }
-        window.onclick = e => { if(e.target.id == 'contact-modal') cerrarModal(); }
-    </script>
+function abrirModal(id){
+  const d = directivos[id];
+  document.getElementById('modal-role').innerHTML = d.rol;
+  document.getElementById('modal-name').textContent = d.nombre;
+  document.getElementById('modal-avatar').textContent = d.icon;
+  document.getElementById('modal-details').innerHTML = `
+    <p><span class="material-symbols-rounded">mail</span> ${d.correo}</p>
+    <p><span class="material-symbols-rounded">call</span> ${d.tel}</p>
+    <p><span class="material-symbols-rounded">domain</span> ${d.ofi}</p>
+  `;
+  const modal = document.getElementById('contact-modal');
+  modal.style.display='flex';
+  setTimeout(()=>modal.classList.add('show'),10);
+}
+function cerrarModal(){
+  const modal = document.getElementById('contact-modal');
+  modal.classList.remove('show');
+  setTimeout(()=>modal.style.display='none',300);
+}
+window.addEventListener('click', e => { if(e.target.id=='contact-modal') cerrarModal(); });
+window.addEventListener('keydown', e => { if(e.key==='Escape') cerrarModal(); });
+</script>
 </body>
 </html>
